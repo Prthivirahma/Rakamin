@@ -1,0 +1,14 @@
+SELECT 
+  o.Date AS Order_Date,
+  pc.CategoryName AS Category_Name,
+  p.ProdName AS Product_Name,
+  p.Price AS Product_Price,
+  o.Quantity AS Order_Qty,
+  (o.Quantity * p.Price) AS Total_Sales,
+  c.CustomerEmail AS Cust_Email,
+  c.CustomerCity AS Cust_City
+FROM `rakamin-452302.Bank_Muamalat.ORDERS` o
+JOIN `rakamin-452302.Bank_Muamalat.PRODUCTS` p ON p.ProdNumber = o.ProdNumber
+JOIN `rakamin-452302.Bank_Muamalat.PRODUCTCATEGORY` pc ON pc.CategoryID = p.Category
+JOIN `rakamin-452302.Bank_Muamalat.CUSTOMER` c ON o.CustomerID = c.CustomerID
+ORDER BY Order_Date ASC;
